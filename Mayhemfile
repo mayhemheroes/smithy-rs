@@ -13,8 +13,6 @@ cmds:
     # Command used to start the target, "@@" is the input file
     # (when "@@" is omitted Mayhem defaults to stdin inputs)
     - cmd: /corrected_prelude_crc
-    - cmd: /json_deserialize
-    - cmd: /json_deserialize_corpus_cov
     - cmd: /mutated_headers
     - cmd: /parse_date_time
     - cmd: /parse_epoch_seconds

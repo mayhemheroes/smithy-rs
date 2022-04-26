@@ -12,9 +12,18 @@ cmds:
 
     # Command used to start the target, "@@" is the input file
     # (when "@@" is omitted Mayhem defaults to stdin inputs)
-    - cmd: /conditional_assign_i8
-    - cmd: /conditional_assign_i128
-    - cmd: /conditional_assign_u8
-    - cmd: /conditional_assign_u16
+    - cmd: /corrected_prelude_crc
+    - cmd: /json_deserialize
+    - cmd: /json_deserialize_corpus_cov
+    - cmd: /mutated_headers
+    - cmd: /parse_date_time
+    - cmd: /parse_epoch_seconds
+    - cmd: /parse_http_date
+    - cmd: /prelude
+    - cmd: /raw_bytes
+    - cmd: /read_date_time
+    - cmd: /read_http_date
+    - cmd: /read_many_from_str
+    - cmd: /round_trip
  
 

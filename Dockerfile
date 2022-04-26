@@ -23,8 +23,6 @@ RUN cd rust-runtime/aws-smithy-types/fuzz && ${HOME}/.cargo/bin/cargo fuzz build
 FROM ubuntu:20.04
 
 COPY --from=builder smithy-rs/target/x86_64-unknown-linux-gnu/release/corrected_prelude_crc /
-COPY --from=builder smithy-rs/target/x86_64-unknown-linux-gnu/release/json_deserialize /
-COPY --from=builder smithy-rs/target/x86_64-unknown-linux-gnu/release/json_deserialize_corpus_cov /
 COPY --from=builder smithy-rs/target/x86_64-unknown-linux-gnu/release/mutated_headers /
 COPY --from=builder smithy-rs/target/x86_64-unknown-linux-gnu/release/parse_date_time /
 COPY --from=builder smithy-rs/target/x86_64-unknown-linux-gnu/release/parse_epoch_seconds /

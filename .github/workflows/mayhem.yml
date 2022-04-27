@@ -7,6 +7,17 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
+  corrected_prelude_crc_MAYHEMFILE: corrected_prelude_crc.mayhemfile
+  mutated_headers_MAYHEMFILE: mutated_headers.mayhemfile
+  parse_date_time_MAYHEMFILE: parse_date_time.mayhemfile
+  parse_epoch_seconds_MAYHEMFILE: parse_epoch_seconds.mayhemfile
+  parse_http_date_MAYHEMFILE: parse_http_date.mayhemfile
+  prelude_MAYHEMFILE: prelude.mayhemfile
+  raw_bytes_MAYHEMFILE: raw_bytes.mayhemfile
+  read_date_time_MAYHEMFILE: read_date_time.mayhemfile
+  read_http_date_MAYHEMFILE: read_http_date.mayhemfile
+  read_many_from_str_MAYHEMFILE: read_many_from_str.mayhemfile
+  round_trip_MAYHEMFILE: round_trip.mayhemfile
 
 jobs:
   build:

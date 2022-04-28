@@ -13,10 +13,6 @@ cmds:
     # Command used to start the target, "@@" is the input file
     # (when "@@" is omitted Mayhem defaults to stdin inputs)
     - cmd: /prelude
-    - cmd: /raw_bytes
-    - cmd: /read_date_time
-    - cmd: /read_http_date
-    - cmd: /read_many_from_str
-    - cmd: /round_trip
+
  
 

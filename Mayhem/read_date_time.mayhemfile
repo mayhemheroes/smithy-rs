@@ -4,9 +4,6 @@ project: smithy-rs
 # Target name (should be unique within the project)
 target: read_date_time
 
-# Base image to run the binary in.
-# image: ghcr.io/prateekvishnu/smithy-rs:latest
-
 # List of commands used to test the target
 cmds:
 

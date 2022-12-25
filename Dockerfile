@@ -12,11 +12,11 @@ RUN ${HOME}/.cargo/bin/cargo install -f cargo-fuzz
 ADD . /smithy-rs
 WORKDIR /smithy-rs
 
-RUN cd rust-runtime/aws-smithy-json/fuzz && ${HOME}/.cargo/bin/cargo fuzz build
-RUN cd rust-runtime/aws-smithy-eventstream/fuzz && ${HOME}/.cargo/bin/cargo fuzz build
-# RUN cd rust-runtime/aws-config/fuzz && ${HOME}/.cargo/bin/cargo fuzz build
-RUN cd rust-runtime/aws-smithy-http/fuzz && ${HOME}/.cargo/bin/cargo fuzz build
-RUN cd rust-runtime/aws-smithy-types/fuzz && ${HOME}/.cargo/bin/cargo fuzz build
+RUN cd rust-runtime/aws-smithy-json/fuzz && ${HOME}/.cargo/bin/cargo +nightly fuzz build
+RUN cd rust-runtime/aws-smithy-eventstream/fuzz && ${HOME}/.cargo/bin/cargo +nightly fuzz build
+# RUN cd rust-runtime/aws-config/fuzz && ${HOME}/.cargo/bin/cargo +nightly fuzz build
+RUN cd rust-runtime/aws-smithy-http/fuzz && ${HOME}/.cargo/bin/cargo +nightly fuzz build
+RUN cd rust-runtime/aws-smithy-types/fuzz && ${HOME}/.cargo/bin/cargo +nightly fuzz build
 
 
 # Package Stage
@@ -33,4 +33,3 @@ COPY --from=builder smithy-rs/target/x86_64-unknown-linux-gnu/release/read_date_
 COPY --from=builder smithy-rs/target/x86_64-unknown-linux-gnu/release/read_http_date /
 COPY --from=builder smithy-rs/target/x86_64-unknown-linux-gnu/release/read_many_from_str /
 COPY --from=builder smithy-rs/target/x86_64-unknown-linux-gnu/release/round_trip /
-

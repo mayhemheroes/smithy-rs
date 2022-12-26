@@ -4,21 +4,27 @@
  */
 
 #![no_main]
-use aws_smithy_eventstream::error::Error;
+
 use aws_smithy_eventstream::frame::Message;
 use libfuzzer_sys::fuzz_target;
+
+const EXPECTED_ERRORS: [&str; 5] = [
+    "HeadersTooLong",
+    "PayloadTooLong",
+    "MessageTooLong",
+    "InvalidHeaderNameLength",
+    "TimestampValueTooLarge",
+];
 
 fuzz_target!(|message: Message| {
     let mut buffer = Vec::new();
     match message.write_to(&mut buffer) {
-        Err(
-            Error::HeadersTooLong
-            | Error::PayloadTooLong
-            | Error::MessageTooLong
-            | Error::InvalidHeaderNameLength
-            | Error::TimestampValueTooLarge(_),
-        ) => {}
-        Err(err) => panic!("unexpected error on write: {}", err),
+        Err(err) => {
+            let err_dbg = format!("{err:?}");
+            if !EXPECTED_ERRORS.iter().any(|e| e.contains(&err_dbg)) {
+                panic!("unexpected error on write: {}", err)
+            }
+        }
         Ok(_) => {
             let mut data = &buffer[..];
             let parsed = Message::read_from(&mut data).unwrap();

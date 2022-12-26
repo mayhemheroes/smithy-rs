@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-use aws_smithy_json::deserialize::{Error, Token};
+use aws_smithy_json::deserialize::Token;
 use aws_smithy_types::Number;
 use serde_json::{Map, Value};
 use std::iter::Peekable;
@@ -11,7 +11,7 @@ use std::iter::Peekable;
 pub fn run_data(data: &[u8]) {
     // Parse through with aws-smithy-json first to make sure it doesn't panic on invalid inputs
     if let Ok(tokens) =
-        aws_smithy_json::deserialize::json_token_iter(data).collect::<Result<Vec<Token>, Error>>()
+        aws_smithy_json::deserialize::json_token_iter(data).collect::<Result<Vec<Token>, _>>()
     {
         // Exercise string unescaping since the later comparison against Serde
         // re-serializes, and thus, loses UTF-16 surrogate pairs.
@@ -34,7 +34,7 @@ pub fn run_data(data: &[u8]) {
         let json = serde_json::to_string(&value).unwrap();
 
         let tokens = aws_smithy_json::deserialize::json_token_iter(json.as_bytes())
-            .collect::<Result<Vec<Token>, Error>>()
+            .collect::<Result<Vec<Token>, _>>()
             .unwrap();
         let mut token_iter = tokens.into_iter().peekable();
         let converted_value = convert_tokens(&mut token_iter);
